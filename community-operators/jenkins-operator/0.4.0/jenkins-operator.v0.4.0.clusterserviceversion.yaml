@@ -7,11 +7,8 @@ metadata:
         "apiVersion":"jenkins.io/v1alpha2",
         "kind":"Jenkins",
         "metadata": {
-          "annotations":{
-            "jenkins.io/openshift-mode":"true"
-          },
-        "generation":1,
-        "name":"example"
+          "generation":1,
+          "name":"example"
         },
         "spec":{
           "backup":{
@@ -88,7 +85,6 @@ metadata:
                 "requests":{"cpu":"500m","memory":"3Gi"}
               }
             }],
-            "securityContext":{"runAsUser":1000561000}},
             "restore":{"action":{},"containerName":""},
             "service":{"port":8080,"type":"ClusterIP"},
             "slaveService":{"port":50000,"type":"ClusterIP"}
@@ -298,6 +294,23 @@ spec:
             - get
             - list
             - watch
+        - apiGroups:
+￼            - "image.openshift.io"
+￼          resources:
+￼            - imagestreams
+￼          verbs:
+￼            - get
+￼            - list
+￼            - watch
+￼        - apiGroups:
+￼            - "build.openshift.io"
+￼          resources:
+￼            - builds
+￼            - buildconfigs
+￼          verbs:
+￼            - get
+￼            - list
+￼            - watch
         serviceAccountName: jenkins-operator
     strategy: deployment
   installModes:
